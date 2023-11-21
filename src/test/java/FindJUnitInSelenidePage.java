@@ -22,7 +22,7 @@ public class FindJUnitInSelenidePage {
 
     @Test
         //ARRANGE
-    void fillFormTest() {
+    void searchAndCheckJunitInPage() {
         open("/selenide/selenide");
 
         //ACT
