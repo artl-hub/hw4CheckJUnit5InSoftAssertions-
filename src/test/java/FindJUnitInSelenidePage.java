@@ -16,25 +16,28 @@ public class FindJUnitInSelenidePage {
         Configuration.baseUrl = "https://github.com";
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
-        Configuration.holdBrowserOpen = true;
+//        Configuration.holdBrowserOpen = true;
         Configuration.timeout = 5000;
     }
 
     @Test
-        //ARRANGE
     void searchAndCheckJunitInPage() {
+
+//         -
+        //Open Selenide page on Github
         open("/selenide/selenide");
 
-        //ACT
+        // - Go to the project Wiki section
         $("#wiki-tab").click();
 
-        //ASSERT
-        $(byTagAndText("a", "Soft assertions")).shouldBe(visible);
+        // - Check there is a SoftAssertions page in "Pages" (rightbar)
+        $("#wiki-pages-filter").setValue("SoftAssertions");
+        $(".wiki-rightbar").shouldHave(text("SoftAssertions"));
 
-        //ACT
-        $(byTagAndText("a", "Soft assertions")).click();
+        // - Open the SoftAssertions page
+        $("a[href='/selenide/selenide/wiki/SoftAssertions']").click();
 
-        //ASSERT
+        // check that there is an example code for JUnit5 inside
         $("#user-content-3-using-junit5-extend-test-class")
                 .closest("h4").sibling(0).shouldHave(text("""
                         @ExtendWith({SoftAssertsExtension.class})
@@ -48,6 +51,7 @@ public class FindJUnitInSelenidePage {
                         $("#second").should(visible).click();
                         }
                         }"""));
+
     }
 }
 
