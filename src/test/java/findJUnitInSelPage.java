@@ -26,13 +26,13 @@ public class findJUnitInSelPage {
         open("/selenide/selenide");
 
         //ACT
-       $("#wiki-tab").click();
+        $("#wiki-tab").click();
 
-       //ASSERT
-        $(byTagAndText("a","Soft assertions")).shouldBe(visible);
+        //ASSERT
+        $(byTagAndText("a", "Soft assertions")).shouldBe(visible);
 
         //ACT
-        $(byTagAndText("a","Soft assertions")).click();
+        $(byTagAndText("a", "Soft assertions")).click();
 
         //ASSERT
         $("#user-content-3-using-junit5-extend-test-class")
